@@ -2,7 +2,7 @@
   "type": "MESSAGE",
   "eventTime": "2025-10-05T10:00:00Z",
   "message": {
-    "text": "@Bot start",
+    "text": "@Bot create",
     "sender": {
       "name": "users/123456",
       "displayName": "Alice"
