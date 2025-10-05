@@ -1,0 +1,14 @@
+{
+  "type": "CARD_CLICKED",
+  "eventTime": "2025-10-05T10:02:00Z",
+  "action": {
+    "actionMethodName": "approve_request",
+    "parameters": [
+      { "key": "requestId", "value": "42" }
+    ]
+  },
+  "message": {
+    "sender": { "name": "users/123456", "displayName": "Alice" },
+    "space": { "name": "spaces/AAAAB3Nza" }
+  }
+}

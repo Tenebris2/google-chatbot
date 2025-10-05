@@ -9,6 +9,5 @@ func main() {
 	cfg := config.LoadConfig()
 
 	server := BotServer.ChatBotServer{Port: cfg.RunningPort}
-
 	server.Run()
 }
