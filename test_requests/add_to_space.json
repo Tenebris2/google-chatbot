@@ -1,0 +1,12 @@
+{
+  "type": "ADDED_TO_SPACE",
+  "eventTime": "2025-10-05T10:01:00Z",
+  "user": {
+    "name": "users/123456",
+    "displayName": "Alice"
+  },
+  "space": {
+    "name": "spaces/AAAAB3Nza",
+    "type": "ROOM"
+  }
+}

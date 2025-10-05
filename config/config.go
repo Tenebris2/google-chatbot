@@ -11,6 +11,7 @@ type Config struct {
 	RunningPort string
 	GitlabURL   string
 	CredsPath   string
+	BotName     string
 }
 
 func LoadConfig() *Config {
@@ -21,15 +22,18 @@ func LoadConfig() *Config {
 	RunningPort := os.Getenv("RUNNING_PORT")
 	GitlabURL := os.Getenv("GITLAB_URL")
 	CredsPath := os.Getenv("CREDENTIALS_PATH")
+	BotName := os.Getenv("BOT_NAME")
 
 	log.Println("Loading config")
 	log.Println("RunningPort:", RunningPort)
 	log.Println("GitlabURL:", GitlabURL)
 	log.Println("CredsPath:", CredsPath)
+	log.Println("BotName:", BotName)
 
 	return &Config{
 		RunningPort: RunningPort,
 		GitlabURL:   GitlabURL,
 		CredsPath:   CredsPath,
+		BotName:     BotName,
 	}
 }

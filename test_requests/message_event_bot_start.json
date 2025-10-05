@@ -1,0 +1,14 @@
+{
+  "type": "MESSAGE",
+  "eventTime": "2025-10-05T10:00:00Z",
+  "message": {
+    "text": "@Bot start",
+    "sender": {
+      "name": "users/123456",
+      "displayName": "Alice"
+    },
+    "space": {
+      "name": "spaces/AAAAB3Nza"
+    }
+  }
+}

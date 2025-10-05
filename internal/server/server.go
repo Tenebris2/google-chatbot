@@ -19,6 +19,7 @@ func (s *ChatBotServer) Run() {
 
 	r.GET("/ping", controller.HandlePing)
 	r.POST("/issue", controller.HandleCreateIssue)
+	r.POST("/chat", controller.HandleChat)
 
 	r.Run(":" + s.Port)
 }
