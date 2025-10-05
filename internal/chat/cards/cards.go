@@ -1,6 +1,10 @@
 package cards
 
-import gchat "google.golang.org/api/chat/v1"
+import (
+	"chatbot-framework/internal/controller/actions"
+
+	gchat "google.golang.org/api/chat/v1"
+)
 
 func BuildCreateIssueCard() *gchat.GoogleAppsCardV1Card {
 	return &gchat.GoogleAppsCardV1Card{
@@ -91,7 +95,7 @@ func buildSubmissionButton() *gchat.GoogleAppsCardV1Widget {
 					Text: "Create Gitlab Issue",
 					OnClick: &gchat.GoogleAppsCardV1OnClick{
 						Action: &gchat.GoogleAppsCardV1Action{
-							Function: "createGitlabIssue",
+							Function: actions.CreateIssueCard,
 							Parameters: []*gchat.GoogleAppsCardV1ActionParameter{
 								{Key: "title", Value: "$issueTitle"},
 								{Key: "description", Value: "$issueDescription"},

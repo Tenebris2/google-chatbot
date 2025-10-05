@@ -14,14 +14,14 @@ var EventTypeName = map[string]EventType{
 	"ADDED_TO_SPACE": AddedToSpace,
 }
 
-type CommmandType int
+type Command int
 
 const (
-	Start  CommmandType = iota
-	Create CommmandType = iota
+	Start  Command = iota
+	Create Command = iota
 )
 
-var CommmandTypeName = map[string]CommmandType{
+var CommandType = map[string]Command{
 	"START":  Start,
 	"CREATE": Create,
 }

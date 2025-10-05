@@ -4,6 +4,7 @@ import (
 	"chatbot-framework/internal/chat"
 	"chatbot-framework/internal/chat/cards"
 	"chatbot-framework/internal/client"
+	"chatbot-framework/internal/controller/actions"
 	"chatbot-framework/internal/service"
 	"chatbot-framework/internal/types"
 	"log"
@@ -74,7 +75,7 @@ func handleMessage(c *gin.Context, event chat.ChatEvent) {
 
 	command := cmdArgs[1] // main command ex: start
 	log.Println("Handling message:", command)
-	switch types.CommmandTypeName[command] {
+	switch types.CommandType[command] {
 	case types.Start:
 		handleStart(c)
 	case types.Create:
@@ -87,7 +88,12 @@ func handleMessage(c *gin.Context, event chat.ChatEvent) {
 }
 
 func handleCardClicked(c *gin.Context, event chat.ChatEvent) {
-
+	switch event.Action.ActionMethodName {
+	case actions.CreateIssueCard:
+		handleCreateIssueCard(c, event.Parameters)
+	default:
+		c.JSON(http.StatusBadRequest, gin.H{"message": "no such action method"})
+	}
 }
 
 func handleStart(c *gin.Context) {
@@ -96,5 +102,33 @@ func handleStart(c *gin.Context) {
 func handleCreate(c *gin.Context, cmd string) {
 	c.JSON(200, gin.H{
 		"cards": cards.BuildCreateIssueCard(),
+	})
+}
+
+func handleCreateIssueCard(c *gin.Context, params []chat.ActionParameter) {
+	paramsMap := make(map[string]string, len(params))
+
+	for _, p := range params {
+		paramsMap[p.Key] = p.Value
+	}
+
+	title := paramsMap["title"]
+	description := paramsMap["description"]
+	projectId := paramsMap["projectId"]
+
+	issue := types.Issue{
+		Title:       title,
+		Description: description,
+		ProjectId:   projectId,
+	}
+	err := service.ServiceCreateIssue(issue, &client.RestGitlabClient{})
+
+	if err != nil {
+		log.Println(err)
+		c.JSON(http.StatusInternalServerError, gin.H{})
+	}
+
+	c.JSON(200, gin.H{
+		"message": "created issue",
 	})
 }

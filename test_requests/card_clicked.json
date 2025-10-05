@@ -1,14 +1,28 @@
 {
   "type": "CARD_CLICKED",
-  "eventTime": "2025-10-05T10:02:00Z",
-  "action": {
-    "actionMethodName": "approve_request",
-    "parameters": [
-      { "key": "requestId", "value": "42" }
-    ]
+  "eventTime": "2025-10-05T20:36:54.000Z",
+  "user": {
+    "name": "users/12345",
+    "displayName": "Jane Doe"
   },
-  "message": {
-    "sender": { "name": "users/123456", "displayName": "Alice" },
-    "space": { "name": "spaces/AAAAB3Nza" }
+  "action": {
+    "actionMethodName": "CreateGitlabIssue",
+    "parameters": [
+      {
+        "key": "title",
+        "value": "Something Test"
+      },
+      {
+        "key": "description",
+        "value": "Description testing"
+      },
+      {
+        "key": "projectId",
+        "value": "853"
+      }
+    ],
+    "actionSource": "CARD_BUTTON"
+  },
+  "commonEventObject": {
   }
 }

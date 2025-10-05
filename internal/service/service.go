@@ -5,6 +5,8 @@ import (
 	"chatbot-framework/internal/types"
 )
 
-func ServiceCreateIssue(issue types.Issue, gitlabClient client.GitlabClient) {
+func ServiceCreateIssue(issue types.Issue, gitlabClient client.GitlabClient) error {
 	gitlabClient.CreateIssue(issue)
+
+	return nil
 }
