@@ -5,6 +5,7 @@ import (
 	"chatbot-framework/internal/client"
 	"chatbot-framework/internal/service"
 	"chatbot-framework/internal/types"
+	"log"
 	"net/http"
 	"strings"
 
@@ -52,10 +53,31 @@ func HandleChat(c *gin.Context) {
 }
 
 func handleMessage(c *gin.Context, event chat.ChatEvent) {
-	command := strings.ToUpper(event.GetMessage())
+	message := event.GetMessage()
+	log.Printf("Got message: \"%s\"\n", message)
+	cmdArgs := strings.Split(message, " ")
+	// @Bot start .. -> get args after @Bot
+	log.Println("Command args:", cmdArgs)
+	if len(cmdArgs) < 2 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": "not enough args",
+		})
+		log.Println("Not enough args:", cmdArgs)
+		return
+	}
+
+	cmdArgs = cmdArgs[0:]
+	for i := range cmdArgs {
+		cmdArgs[i] = strings.ToUpper(cmdArgs[i])
+	}
+
+	command := cmdArgs[1] // main command ex: start
+	log.Println("Handling message:", command)
 	switch types.CommmandTypeName[command] {
 	case types.Start:
-		handleStart(c, command)
+		handleStart(c)
+	case types.Create:
+		handleCreate(c, command)
 	default:
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": chat.INCORRECT_COMMAND,
@@ -67,6 +89,8 @@ func handleCardClicked(c *gin.Context, event chat.ChatEvent) {
 
 }
 
-func handleStart(c *gin.Context, cmd string) {
+func handleStart(c *gin.Context) {
 
 }
+
+func handleCreate(c *gin.Context, cmd string) {}

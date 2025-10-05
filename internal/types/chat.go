@@ -17,9 +17,11 @@ var EventTypeName = map[string]EventType{
 type CommmandType int
 
 const (
-	Start CommmandType = iota
+	Start  CommmandType = iota
+	Create CommmandType = iota
 )
 
 var CommmandTypeName = map[string]CommmandType{
-	"START": Start,
+	"START":  Start,
+	"CREATE": Create,
 }
