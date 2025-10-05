@@ -89,7 +89,7 @@ func handleMessage(c *gin.Context, event chat.ChatEvent) {
 
 func handleCardClicked(c *gin.Context, event chat.ChatEvent) {
 	switch event.Action.ActionMethodName {
-	case actions.CreateIssueCard:
+	case actions.CreateGitlabIssue:
 		handleCreateIssueCard(c, event.Parameters)
 	default:
 		c.JSON(http.StatusBadRequest, gin.H{"message": "no such action method"})

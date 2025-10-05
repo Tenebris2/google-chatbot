@@ -1,5 +1,5 @@
 package actions
 
 const (
-	CreateIssueCard = "CreateIssueCard"
+	CreateGitlabIssue = "CreateGitlabIssue"
 )

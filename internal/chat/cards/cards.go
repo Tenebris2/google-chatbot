@@ -95,7 +95,7 @@ func buildSubmissionButton() *gchat.GoogleAppsCardV1Widget {
 					Text: "Create Gitlab Issue",
 					OnClick: &gchat.GoogleAppsCardV1OnClick{
 						Action: &gchat.GoogleAppsCardV1Action{
-							Function: actions.CreateIssueCard,
+							Function: actions.CreateGitlabIssue,
 							Parameters: []*gchat.GoogleAppsCardV1ActionParameter{
 								{Key: "title", Value: "$issueTitle"},
 								{Key: "description", Value: "$issueDescription"},
