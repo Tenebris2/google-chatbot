@@ -1,16 +1,13 @@
 package main
 
 import (
-	"chatbot-framework/client"
 	"chatbot-framework/config"
-	"log"
+	"chatbot-framework/internal/chat"
+	"context"
 )
 
 func main() {
-	client := client.RestGoogleChatClient{
-		RestConfig: config.Config{Port: "8080"},
-	}
+	ctx := context.Background()
 
-	log.Printf("Starting client")
-	client.Start()
+	client := chat.NewClient(ctx)
 }

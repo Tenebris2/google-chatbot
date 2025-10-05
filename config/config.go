@@ -1,6 +1,7 @@
 package config
 
 type Config struct {
-	Auth Auth
-	Port string
+	RunningPort string
+	GitlabURL   string
+	CredsPath   string
 }

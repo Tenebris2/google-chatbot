@@ -1,33 +1,18 @@
 package client
 
 import (
-	"chatbot-framework/config"
-	"chatbot-framework/internal/chat"
-	"github.com/gin-gonic/gin"
-	googlechat "google.golang.org/api/chat/v1"
-	"net/http"
+	"log"
 )
 
-type GoogleChatClient interface {
-	Start()
+var CREATE_ISSUE_ENDPOINT = "/api/v4/create_issues/"
+
+type GitlabClient interface {
+	CreateIssue()
 }
 
-type RestGoogleChatClient struct {
-	RestConfig config.Config
-	RouteGroup *gin.RouterGroup
+type RestGitlabClient struct {
 }
 
-func (c *RestGoogleChatClient) Start() {
-	router := gin.Default()
-	// example route inside the group
-	router.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"message": "pong from Google Chat client"})
-	})
-	router.POST("/issue", func(c *gin.Context) {
-		c.JSON(http.StatusOK, chat.CreateMessage([]*googlechat.Card{&googlechat.Card{
-			Header: &googlechat.CardHeader{Title: "hello"},
-		}}))
-	})
-
-	router.Run(":" + c.RestConfig.Port)
+func (r *RestGitlabClient) CreateIssue(title, projectId, description string) {
+	log.Printf("Creating issue with title: %s, projectId: %s, description: %s\n", title, projectId, description)
 }
