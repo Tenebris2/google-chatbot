@@ -1,7 +1,11 @@
 package chat
 
-import googlechat "google.golang.org/api/chat/v1"
+import gc "google.golang.org/api/chat/v1"
 
-func CreateMessage(cards []*googlechat.Card) *googlechat.Message {
-	return &googlechat.Message{Cards: cards}
+func CreateMessage(cards []*gc.Card) *gc.Message {
+	return &gc.Message{Cards: cards}
+}
+
+func CreateCard() *gc.Card {
+	return &gc.Card{}
 }
