@@ -1,0 +1,82 @@
+{
+  "cards": {
+    "header": {
+      "title": "Create Issue"
+    },
+    "name": "CreateIssue",
+    "sections": [
+      {
+        "header": "Create issue form",
+        "widgets": [
+          {
+            "textInput": {
+              "hintText": "Title",
+              "label": "Issue Title",
+              "name": "IssueTitle",
+              "placeholderText": "Title",
+              "type": "SINGLE_LINE"
+            }
+          },
+          {
+            "textInput": {
+              "hintText": "Description",
+              "label": "Issue Description",
+              "name": "IssueDesc",
+              "placeholderText": "Description",
+              "type": "MULTIPLE_LINE"
+            }
+          },
+          {
+            "selectionInput": {
+              "items": [
+                {
+                  "text": "MyApp Frontend (ID: 123)",
+                  "value": "123"
+                },
+                {
+                  "text": "Backend API (ID: 456)",
+                  "value": "456"
+                },
+                {
+                  "text": "Mobile App (ID: 789)",
+                  "value": "789"
+                }
+              ],
+              "label": "Project Selection",
+              "name": "ProjectSelection",
+              "type": "DROPDOWN"
+            }
+          },
+          {
+            "buttonList": {
+              "buttons": [
+                {
+                  "onClick": {
+                    "action": {
+                      "function": "createGitlabIssue",
+                      "parameters": [
+                        {
+                          "key": "title",
+                          "value": "$issueTitle"
+                        },
+                        {
+                          "key": "description",
+                          "value": "$issueDescription"
+                        },
+                        {
+                          "key": "projectId",
+                          "value": "$projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "text": "Create Gitlab Issue"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

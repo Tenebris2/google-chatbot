@@ -2,6 +2,7 @@ package controller
 
 import (
 	"chatbot-framework/internal/chat"
+	"chatbot-framework/internal/chat/cards"
 	"chatbot-framework/internal/client"
 	"chatbot-framework/internal/service"
 	"chatbot-framework/internal/types"
@@ -90,7 +91,10 @@ func handleCardClicked(c *gin.Context, event chat.ChatEvent) {
 }
 
 func handleStart(c *gin.Context) {
-
 }
 
-func handleCreate(c *gin.Context, cmd string) {}
+func handleCreate(c *gin.Context, cmd string) {
+	c.JSON(200, gin.H{
+		"cards": cards.BuildCreateIssueCard(),
+	})
+}
